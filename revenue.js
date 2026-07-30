@@ -19,7 +19,7 @@
 //Use template literals for the output
 //	`${}+`	\n\t
 
-
+//fsPromises.chmod(path, mode) Change permission	Need more info
 
 const {open} = require('node:fs/promises');
 
@@ -28,6 +28,17 @@ const {open} = require('node:fs/promises');
 
 	for await (const line of data.readLines()){
 
-		console.log(line);
+		let country = line.split(",");
+		let rmSpaces = line.trimEnd();
+		console.log(line.trim);
+
+//		console.log(country[1]);
+//		console.log(country[4]);
+
+		let  isoAndRevenue = new Map();
+		let iso = country[1];
+		let  customRev = country[4];
+//		console.log(iso + customRev);
 	}
+	
 })();
