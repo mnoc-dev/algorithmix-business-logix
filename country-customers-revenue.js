@@ -21,13 +21,13 @@
 
 //fsPromises.chmod(path, mode) Change permission	Need more info
 
-const {open} = require('node:fs/promises');
+import { open } from 'node:fs/promises';
 
-(async () => {
-	const data = await open('./data.csv');
+const file = await open('./data.csv');
 
-	for await (const line of data.readLines()){
+let lineCount = 0;
 
+<<<<<<< HEAD:revenue.js
 		let line = line.trim();
 //		let country = line.split(",");
 //		let line = line.trim();
@@ -41,5 +41,18 @@ const {open} = require('node:fs/promises');
 //		let  customRev = country[4];
 //		console.log(iso + customRev);
 	}
+=======
+for await (const line of file.readLines()) {
+	lineCount ++;
+  		if (lineCount < 3){
+			continue;
+		}
+		if (!line.trim()){
+			continue;
+>>>>>>> 34adca850b5e5d4fb5863a46efadccf86e2e7268:country-customers-revenue.js
 	
-})();
+		}
+	
+
+console.log(line);
+}
