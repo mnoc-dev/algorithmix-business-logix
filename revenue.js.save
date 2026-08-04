@@ -29,6 +29,7 @@ const {open} = require('node:fs/promises');
 	for await (const line of data.readLines()){
 
 		let line = line.trim();
+
 //		let country = line.split(",");
 //		let line = line.trim();
 //		console.log(line);
