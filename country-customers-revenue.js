@@ -27,21 +27,14 @@ const file = await open('./data.csv');
 
 let lineCount = 0;
 
-<<<<<<< HEAD:revenue.js
-		let line = line.trim();
-//		let country = line.split(",");
-//		let line = line.trim();
-//		console.log(line);
 
-//		console.log(country[1]);
-//		console.log(country[4]);
+
 
 //		let  isoAndRevenue = new Map();
 //		let iso = country[1];
 //		let  customRev = country[4];
 //		console.log(iso + customRev);
-	}
-=======
+
 for await (const line of file.readLines()) {
 	lineCount ++;
   		if (lineCount < 3){
@@ -49,10 +42,41 @@ for await (const line of file.readLines()) {
 		}
 		if (!line.trim()){
 			continue;
->>>>>>> 34adca850b5e5d4fb5863a46efadccf86e2e7268:country-customers-revenue.js
-	
 		}
-	
+		
+		//console.log(line);
+	const lineSplit = line.split(",");
+	const rate = lineSplit[3];
+	const revenue = lineSplit[4]; 
+	const revenueEuro = rate * revenue;
+		//console.log(revenueEuro + " €");
+	const isoCode = lineSplit[1];
+	let frSumRevenue = 0;
+	let gbSumRevenue = 0;
+	let usSumRevenue = 0;
+	let jpSumRevenue = 0;
+		
+		console.log(isoCode);
+		while(line === undefined){
+		if (isoCode === "FR"){
+			frSumRevenue += revenueEuro;
+		}
+		if (isoCode === "GB"){
+			gbSumRevenue += revenueEuro;
+			console.log(gbSumRevenue);
 
-console.log(line);
+		}
+		if (isoCode === "US"){
+			usSumRevenue += revenueEuro;
+			console.log(usSumRevenue);
+
+		}
+		if (isoCode === "JP"){
+			jpSumRevenue += revenueEuro;
+			console.log(jpSumRevenue);
+
+		}
+		}
+			console.log(frSumRevenue + "");
+
 }
