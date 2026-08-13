@@ -26,14 +26,10 @@ import { open } from 'node:fs/promises';
 const file = await open('./data.csv');
 
 let lineCount = 0;
-
-
-
-
-//		let  isoAndRevenue = new Map();
-//		let iso = country[1];
-//		let  customRev = country[4];
-//		console.log(iso + customRev);
+	let frSumRevenue = 0;
+	let gbSumRevenue = 0;
+	let usSumRevenue = 0;
+	let jpSumRevenue = 0;
 
 for await (const line of file.readLines()) {
 	lineCount ++;
@@ -48,35 +44,45 @@ for await (const line of file.readLines()) {
 	const lineSplit = line.split(",");
 	const rate = lineSplit[3];
 	const revenue = lineSplit[4]; 
-	const revenueEuro = rate * revenue;
+	const revenueEuro = revenue / rate;
 		//console.log(revenueEuro + " €");
 	const isoCode = lineSplit[1];
-	let frSumRevenue = 0;
-	let gbSumRevenue = 0;
-	let usSumRevenue = 0;
-	let jpSumRevenue = 0;
+	
+		//console.log(isoCode);
 		
-		console.log(isoCode);
-		while(line === undefined){
 		if (isoCode === "FR"){
 			frSumRevenue += revenueEuro;
+
 		}
-		if (isoCode === "GB"){
+		else if (isoCode === "GB"){
 			gbSumRevenue += revenueEuro;
-			console.log(gbSumRevenue);
 
 		}
-		if (isoCode === "US"){
+		else if (isoCode === "US"){
 			usSumRevenue += revenueEuro;
-			console.log(usSumRevenue);
 
 		}
-		if (isoCode === "JP"){
+		else {
 			jpSumRevenue += revenueEuro;
-			console.log(jpSumRevenue);
 
 		}
-		}
-			console.log(frSumRevenue + "");
+		
 
 }
+		let total = frSumRevenue + gbSumRevenue + usSumRevenue + jpSumRevenue;
+			console.log("fr : " + frSumRevenue + " €/ " + Math.round(frSumRevenue * 100) / 100  + " €");
+			console.log("gb : " + gbSumRevenue + " €/ " + Math.round(gbSumRevenue * 100) / 100  + " €");
+			console.log("us : " + usSumRevenue + " €/ " + Math.round(usSumRevenue * 100) / 100  + " €");
+			console.log("jp : " + jpSumRevenue + " €/ " + Math.round(jpSumRevenue * 100) / 100  + " €\n\t");
+			console.log("total : " + total + " €/ " + Math.round(total * 100) / 100 +" €\n");
+
+		let frPercent = (frSumRevenue * 100) / total;
+		let gbPercent = (gbSumRevenue * 100) / total;
+		let usPercent = (usSumRevenue * 100) / total;
+		let jpPercent = (jpSumRevenue * 100) / total;
+			console.log("Fr Percent : " + frPercent + " %");
+			console.log("Gb Percent : " + gbPercent + " %");
+			console.log("Us Percent : " + usPercent + " %");
+			console.log("Jp Percent : " + jpPercent + " %");
+			
+
