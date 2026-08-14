@@ -80,9 +80,9 @@ for await (const line of file.readLines()) {
 		let gbPercent = (gbSumRevenue * 100) / total;
 		let usPercent = (usSumRevenue * 100) / total;
 		let jpPercent = (jpSumRevenue * 100) / total;
-			console.log("Fr Percent : " + frPercent + " %");
-			console.log("Gb Percent : " + gbPercent + " %");
-			console.log("Us Percent : " + usPercent + " %");
-			console.log("Jp Percent : " + jpPercent + " %");
+			console.log("Fr Percent : " + frPercent + " %/ " + Math.round(frPercent * 100) /100 + " %");
+			console.log("Gb Percent : " + gbPercent + " %/ " + Math.round(gbPercent * 100) /100 + " %");
+			console.log("Us Percent : " + usPercent + " %/ " + Math.round(usPercent * 100) /100 + " %");
+			console.log("Jp Percent : " + jpPercent + " %/ " + Math.round(jpPercent * 100) /100 + " %");
 			
 
